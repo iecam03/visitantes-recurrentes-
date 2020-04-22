@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
       await Visitor.create({ name: name || "Anónimo", count: 1 });
     }
     let HTML = "";
-    HTML += '<table><tbody class="tab"><thead>';
+    HTML += '<table><thead>';
     HTML += '<tr><th>ID</th><th>Name</th><th>Visits</th></tr>';
     Visitor.find(function (err, visitors) {
       if (err)
@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
       visitors.forEach(function (vi) {
         HTML += '<tr><td>' + vi["_id"] + '</td><td>' + vi["name"] + '</td><td>' + vi["count"] + '</td></tr>';
       });
-      HTML += '</thead></tbody></table>';
+      HTML += '</thead></table>';
       res.send(HTML);
     });
   });
