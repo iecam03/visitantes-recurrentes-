@@ -25,15 +25,15 @@ app.get('/', (req, res) => {
       await Visitor.create({ name: name || "Anónimo", count: 1 });
     }
     let HTML = "";
-    HTML += '<table><tbody><thead>';
-    HTML += '<tr><th>Id</th><th>Name</th><th>Visits</th></tr>';
+    HTML += '<table><thead>';
+    HTML += '<tr><th>Id</th><th>Name</th><th>Visits</th></tr></thead><tbody>';
     Visitor.find(function (err, visitors) {
       if (err)
         return console.log(err);
       visitors.forEach(function (vi) {
         HTML += '<tr><td>' + vi["_id"] + '</td><td>' + vi["name"] + '</td><td>' + vi["count"] + '</td></tr>';
       });
-      HTML += '</thead></tbody></table>';
+      HTML += '</tbody></table>';
       res.send(HTML);
     });
   });
